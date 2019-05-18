@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+* {margin:0; padding:0; }
+li{list-style:none; }
+
+	#div1 {
+		width:850px;
+		height:500px; 
+		margin:50px auto; 
+		overflow:hidden; 
+		position:relative;
+		}
+	#div1 ul li{
+		height:500px;
+		opacity: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 0;
+		transition: opacity 1.5s;
+		}
+	#div1 ul li.ac{
+		z-index: 5;
+		opacity: 1;
+		}
+	#div1 ol {
+		position:absolute;
+		right: 10%;bottom: 
+		10px;z-index:6;
+		}
+	#div1 ol li{
+		width: 20px;
+		height: 20px;
+		background: #fff;
+		margin-left: 5px;
+		float: left;
+		line-height: 
+		20px;text-align: center;
+		cursor: pointer;
+		}
+	#div1 ol li.ac{
+		background: red;
+		color: #fff;
+		}
+	#div1>a{
+		text-decoration: none;
+		position: absolute;
+		top: 50%;
+		margin-top: -10px;
+		height: 40px;
+		ine-height: 32px;
+		text-align: center;
+		width: 40px;
+		font-size: 40px;
+		vertical-align: middle;
+		color: #fff;
+		background: rgba(0,0,0,0.5);
+		z-index:6;}
+	#goPrev{
+		left: 0;
+		}
+	#goNext{
+		right: 0;
+		}
+	img{
+		width:850px; 
+		height:500px;
+		}
+</style>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li class="ac"><a href="javascript:alert(0);"><img src="1.jpg" /></a></li>
+    	<li><a href="javascript:alert(1);"><img src="2.jpg" /></a></li>
+    	<li><a href="javascript:alert(2);"><img src="3.jpg" /></a></li>
+    	<li><a href="javascript:alert(3);"><img src="4.jpg" /></a></li>
+    	<li><a href="javascript:alert(4);"><img src="5.jpg" /></a></li>
+    </ul>
+    <ol>
+    	
+    </ol>
+    <a href="javascript:;" id="goPrev">&laquo;</a>
+    <a href="javascript:;" id="goNext">&raquo;</a>
+</div>
+	</head>
+	<body>
+		<script>
+			var div = document.querySelector("#div"),
+			
+				imgs = div.querySelector("ul").children,
+			 
+			  ol = div.querySelector("ol"),
+			  
+			  btns = [],
+			  
+			  goprev = document.querySelector("#goPrev"),
+			  goNext = document.querySelector("#goNext");
+			  
+			  var index = 0;
+			  
+			  var lastIndex = 0 ;
+			  
+			  var timer = null;
+			  
+			  for(var i = 0; i < lis.length; i++){
+			  	
+			  	var li = document.createElement("li")
+			  	
+			  	li .innerHTML = i + 1;
+			  	
+			  	if (i === 0) li.className = "ac"
+			  	
+			  	lo.appendChild(li);
+			  	
+			  	btns.push(li);
+			  }
+			  //点击按钮
+			  for (let i = 0 ; i< btns.length ; i++){
+			  	
+			  	btns[i].onclick = function(){
+			  		
+			  		index = i 
+			  		changeImg();
+			  		lastIndex = index;
+			  	}
+			  }
+			   
+			   goNext.onclick = function(){
+			   	
+			   	if(index === lis .length-1){
+			   		
+			   		index = 0
+			   	}
+			   	changeImg();
+			   	lastIndex = index 
+			   }
+			   
+			   goprev.oncklick = function(){
+			   	
+			   	if (--index < 0){
+			   		
+			   		index = lis .length-1;
+			   	}
+			   	changeImg();
+			   	lastIndex = index;
+			   }
+			    
+			    div .onmouseleave = (function autoplay(){
+			    	
+			    	timer = setInterval(goprev.onclick,3000);
+			    	
+			    	return autoplay;
+			    })()
+			    
+			    div .onmouseenter = function(){
+			    	
+			    	clearInterval(timer);
+			    }
+			    
+			    function changeImg (){
+			    	
+			    	btns[lastIndex].classList.remove("ac");
+			    	
+			    	lis[lastIndex].classList.remove("ac");
+			    	
+			    	btns[index].classList.add("ac");
+			    	
+			    	lis[index].classList.add('ac')
+			    }
+		</script>
+	</body>
+</html>
